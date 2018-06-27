@@ -14,6 +14,7 @@ class App extends Component {
         return (
             <div>
                 <Navbar />
+                <Landing />
                 <Footer />
             </div>
         )
