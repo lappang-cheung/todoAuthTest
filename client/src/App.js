@@ -13,19 +13,12 @@ import Login from './components/Auth/Login'
 // Import CSS
 import './css/App.css'
 
-class App extends Component {
 
-    state = {
-        name: '',
-        email: '',
-        password: '',
-        password2: '',
-        
-    }
+class App extends Component {
 
     render(){
         return (
-            <Router>
+            <Router> 
                 <div>
                     {/* Navigation */}
                     <Navbar />
@@ -36,7 +29,6 @@ class App extends Component {
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/login" component={Login} />
                     </div>
-
                     {/* Footer */}
                     <Footer />
                 </div>
