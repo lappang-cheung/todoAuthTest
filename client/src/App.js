@@ -10,6 +10,15 @@ import Footer from './components/layout/Footer'
 import './css/App.css'
 
 class App extends Component {
+
+    state = {
+        name: '',
+        email: '',
+        password: '',
+        password2: '',
+        
+    }
+
     render(){
         return (
             <div>
