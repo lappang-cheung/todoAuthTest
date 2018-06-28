@@ -1,15 +1,41 @@
 import React, { Component } from 'react'
 
 class Register extends Component {
+
+    state = {
+        name: '',
+        email: '',
+        password: '',
+        password2: ''
+    }
+
+    onChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault()
+        const newUser = {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password
+        }
+
+        console.log(newUser)
+    }
+
     render() {
         return (
+            
             <div className="register">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
                             <h1 className="display-4 text-center">Sign Up</h1>
                             <p className="lead text-center">Create your TaskList account</p>
-                            <form action="create-profile.html">
+                            <form onSubmit={this.onSubmit}>
 
                                 <div className="form-group">
                                     <input 
@@ -18,7 +44,8 @@ class Register extends Component {
                                         placeholder="Name" 
                                         name="name" 
                                         required 
-                                        value={this.props.name}
+                                        value={this.state.name}
+                                        onChange={this.onChange}
                                     />
                                 </div>
                                 
@@ -28,7 +55,8 @@ class Register extends Component {
                                         className="form-control form-control-lg" 
                                         placeholder="Email Address" 
                                         name="email"
-                                        value={this.props.email} 
+                                        value={this.state.email} 
+                                        onChange={this.onChange}
                                     />
                                 </div>
                                 
@@ -38,7 +66,8 @@ class Register extends Component {
                                         className="form-control form-control-lg" 
                                         placeholder="Password" 
                                         name="password" 
-                                        value={this.props.password}    
+                                        value={this.state.password}
+                                        onChange={this.onChange}    
                                     />
                                 </div>
                                 
@@ -48,7 +77,8 @@ class Register extends Component {
                                         className="form-control form-control-lg" 
                                         placeholder="Confirm Password" 
                                         name="password2" 
-                                        value={this.props.password2}    
+                                        value={this.state.password2}
+                                        onChange={this.onChange}    
                                     />
                                 </div>
                                 
