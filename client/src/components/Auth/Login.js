@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import classnames from 'classnames'
 import { withRouter } from 'react-router-dom'
+import jwt_decode from 'jwt-decode'
+
+import setAuthToken from '../utils/setAuthToken'
 
 class Login extends Component {
 
@@ -25,7 +28,18 @@ class Login extends Component {
         }
 
         axios.post('/users/login', newUser)
-			.then(res => this.props.history.push('/'))
+			.then(res => {
+				// Save the token to local storage
+				const { token } = res.data
+				// Storage the token in local storage
+				localStorage.setItem('jwtToken', token)
+				// Set token to Auth header
+				setAuthToken(token)
+				// Decode token to get user data
+				// const decoded = jwt_decode(token)
+				this.props.history.push('/tasks/')
+				}	
+			)
             .catch(err => this.setState({
                 errors: err.response.data
             }))

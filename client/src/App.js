@@ -12,6 +12,7 @@ import Login from './components/Auth/Login'
 
 // Import CSS
 import './css/App.css'
+import TaskList from './components/Tasks/TaskList';
 
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
                     <Navbar />
                     {/* Landing Page */}
                     <Route exact path='/' component={Landing} />
+                    <Route exact path='/tasks' component={TaskList} />
                     {/* User auth routes */}
                     <div className="container">
                         <Route exact path="/register" component={Register} />
