@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import classnames from 'classnames'
 
 class Register extends Component {
 
@@ -34,6 +35,9 @@ class Register extends Component {
     }
 
     render() {
+
+        const { errors } = this.state
+
         return (
             
             <div className="register">
@@ -44,51 +48,79 @@ class Register extends Component {
                             <p className="lead text-center">Create your TaskList account</p>
                             <form onSubmit={this.onSubmit}>
 
+                                {/* Name input */}
                                 <div className="form-group">
                                     <input 
                                         type="text" 
-                                        className="form-control form-control-lg" 
+                                        className={
+                                            classnames('form-control form-control-lg', {
+                                                'is-invalid': errors.name
+                                            })
+                                        }
                                         placeholder="Name" 
-                                        name="name" 
-                                        required 
+                                        name="name"
                                         value={this.state.name}
                                         onChange={this.onChange}
                                     />
+                                    {/* Showing name is required */}
+                                    {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
                                 </div>
-                                
+
+                                {/* Email input */}
                                 <div className="form-group">
                                     <input 
                                         type="email" 
-                                        className="form-control form-control-lg" 
+                                        className={
+                                            classnames('form-control form-control-lg', {
+                                                'is-invalid': errors.email
+                                            })
+                                        } 
                                         placeholder="Email Address" 
                                         name="email"
                                         value={this.state.email} 
                                         onChange={this.onChange}
                                     />
+                                    {/* Showing email is required */}
+                                    {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
                                 </div>
-                                
+
+                                {/* Password Input */}
                                 <div className="form-group">
                                     <input 
                                         type="password" 
-                                        className="form-control form-control-lg" 
+                                        className={
+                                            classnames('form-control form-control-lg', {
+                                                'is-invalid': errors.password
+                                            })
+                                        } 
                                         placeholder="Password" 
                                         name="password" 
                                         value={this.state.password}
                                         onChange={this.onChange}    
                                     />
+                                    {/* Showing password is required */}
+                                    {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
                                 </div>
                                 
+
+                                {/* Confirm Password Input */}
                                 <div className="form-group">
                                     <input 
                                         type="password" 
-                                        className="form-control form-control-lg" 
+                                        className={
+                                            classnames('form-control form-control-lg', {
+                                                'is-invalid': errors.password2
+                                            })
+                                        } 
                                         placeholder="Confirm Password" 
                                         name="password2" 
                                         value={this.state.password2}
                                         onChange={this.onChange}    
                                     />
+                                    {/* Showing confirm password is required */}
+                                    {errors.password2 && (<div className="invalid-feedback">{errors.password2}</div>)}
                                 </div>
-                                
+
                                 <input type="submit" className="btn btn-info btn-block mt-4" />
                             </form>
                         </div>
