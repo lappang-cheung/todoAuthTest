@@ -1,8 +1,40 @@
 import React, { Component} from 'react'
 import { Link } from 'react-router-dom'
 
+import setAuthToken from '../utils/setAuthToken'
+
 class Navbar extends Component {
+
+    logout = (e) => {
+        localStorage.removeItem('jwtToken')
+        setAuthToken(false)
+    }
+
     render() {
+
+        const authLinks = (
+            <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                    <Link className="nav-link" to="/tasks">Task Board</Link>
+                </li>
+                
+                <li className="nav-item">
+                    <a href="" onClick={this.logout} className="nav-link">Log out</a>
+                </li>
+            </ul>
+        )
+
+        const guestLinks = (
+            <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                    <Link className="nav-link" to="/register">Sign Up</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/login">Login</Link>
+                </li>
+            </ul>
+        )
+
         return (
             <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
                 <div className="container">
@@ -12,14 +44,7 @@ class Navbar extends Component {
                     </button>
 
                     <div className="collapse navbar-collapse" id="mobile-nav">
-                        <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/register">Sign Up</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/login">Login</Link>
-                            </li>
-                        </ul>
+                        { localStorage.jwtToken !== undefined ? authLinks : guestLinks}
                     </div>
                 </div>
             </nav>
