@@ -7,7 +7,7 @@ const TaskList = props => {
     const { itemList, onDeleteInput } = props
 
     return (
-        <ul>
+        <ul className="list-group-flush">
             {
                 itemList.map((item,index) => 
                     <TaskView

@@ -19,15 +19,19 @@ class TaskView extends Component {
                     key={this.props.index}
                     className={this.state.active ? 'active' : 'noActive'}
                     onClick={this.onStrikeThrough}
+                    className="list-group-item container list-padding"
                 >
                     {this.props.item.description}
-                </li>
-                <button onClick={(e) => {
-                    this.props.onDeleteInput(this.props.item)
-                }}
-                >
+
+                    <button 
+                        onClick={(e) => {
+                            this.props.onDeleteInput(this.props.item)
+                        }}
+                        className="btn btn-outline-danger float-sm-right"
+                    >
                     Remove
-                </button>
+                    </button>
+                </li>
             </span>
         )
     }

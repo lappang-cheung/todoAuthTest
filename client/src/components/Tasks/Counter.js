@@ -5,7 +5,7 @@ const Counter = props => {
     const { itemList } = props
 
     return(
-        <p>You have a total of {itemList.length} task(s)</p>
+        <p className="counter-text">You have a total of {itemList.length} task(s)</p>
     )
 }
 

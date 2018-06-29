@@ -52,6 +52,16 @@ img {
   li{
     cursor: pointer;
   }
+
+  .counter-text {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 2rem;
+  }
+
+  .list-padding{
+    padding: 2rem 0;
+  }
     
   /* Sticky footer styles
 -------------------------------------------------- */
