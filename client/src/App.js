@@ -12,7 +12,7 @@ import Login from './components/Auth/Login'
 
 // Import CSS
 import './css/App.css'
-import TaskList from './components/Tasks/TaskList'
+import TaskApp from './components/Tasks/TaskApp'
 import setAuthToken from './components/utils/setAuthToken'
 import ProtectedRoute from './components/utils/ProtectedRoute'
 
@@ -40,8 +40,8 @@ class App extends Component {
                                 <Route exact path="/register" component={Register} />
                                 <Route exact path="/login" component={Login} />
                             </div>
-                            {/* Tasklist View */}
-                            <ProtectedRoute exact path="/tasks" component={TaskList} />
+                            {/* TaskApp View */}
+                            <ProtectedRoute exact path="/tasks" component={TaskApp} />
                         {/* Footer */}
                         <Footer />
                     </div>
