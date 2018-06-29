@@ -21,7 +21,7 @@ class TaskView extends Component {
                     onClick={this.onStrikeThrough}
                     className="list-group-item container list-padding"
                 >
-                    {this.props.item.description}
+                    <h6>{this.props.item.title}</h6>
 
                     <button 
                         onClick={(e) => {
@@ -29,8 +29,12 @@ class TaskView extends Component {
                         }}
                         className="btn btn-outline-danger float-sm-right"
                     >
-                    Remove
+                        Remove
                     </button>
+                    
+                    <p>{this.props.item.description}</p>
+
+                    
                 </li>
             </span>
         )
