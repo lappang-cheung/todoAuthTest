@@ -1,13 +1,17 @@
 import React, { Component} from 'react'
 import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import setAuthToken from '../utils/setAuthToken'
 
 class Navbar extends Component {
 
     logout = (e) => {
+        e.preventDefault()
         localStorage.removeItem('jwtToken')
         setAuthToken(false)
+        this.props.history.push('/')
+
     }
 
     render() {
@@ -52,4 +56,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar
+export default (withRouter(Navbar))
