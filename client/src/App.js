@@ -12,10 +12,9 @@ import Login from './components/Auth/Login'
 
 // Import CSS
 import './css/App.css'
-import TaskList from './components/Tasks/TaskList';
-import setAuthToken from './components/utils/setAuthToken';
-import { AuthProvider } from './components/utils/AuthContext';
-import ProtectedRoute from './components/utils/ProtectedRoute';
+import TaskList from './components/Tasks/TaskList'
+import setAuthToken from './components/utils/setAuthToken'
+import ProtectedRoute from './components/utils/ProtectedRoute'
 
 if(localStorage.jwtToken){
     setAuthToken(localStorage.jwtToken)
@@ -23,28 +22,30 @@ if(localStorage.jwtToken){
 
 class App extends Component {
 
+    state = {
+        isAuth: false
+    }
+
+
     render(){
         return (
-            <AuthProvider>
                 <Router> 
                     <div>
                         {/* Navigation */}
                         <Navbar />
-                        {/* Landing Page */}
-                        <Route exact path='/' component={Landing} />
-                        {/* User auth routes */}
-                        <div className="container">
-                            <Route exact path="/register" component={Register} />
-                            <Route exact path="/login" component={Login} />
-                        </div>
-
-                        <ProtectedRoute path="/tasks" component={TaskList} />
-
+                            {/* Landing Page */}
+                            <Route exact path='/' component={Landing} />
+                            {/* User auth routes */}
+                            <div className="container">
+                                <Route exact path="/register" component={Register} />
+                                <Route exact path="/login" component={Login} />
+                            </div>
+                            {/* Tasklist View */}
+                            <ProtectedRoute exact path="/tasks" component={TaskList} />
                         {/* Footer */}
                         <Footer />
                     </div>
                 </Router>
-            </AuthProvider>
         )
     }
 }
