@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 class Register extends Component {
 
@@ -6,7 +7,8 @@ class Register extends Component {
         name: '',
         email: '',
         password: '',
-        password2: ''
+        password2: '',
+        errors: {}
     }
 
     onChange = (e) => {
@@ -20,10 +22,15 @@ class Register extends Component {
         const newUser = {
             name: this.state.name,
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            password2: this.state.password2
         }
 
-        console.log(newUser)
+        axios.post('/users/signup', newUser)
+            .then(res => console.log(res.data))
+            .catch(err => this.setState({
+                errors: err.response.data
+            }))
     }
 
     render() {

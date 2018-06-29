@@ -48,7 +48,7 @@ class Login extends Component {
 									className="form-control form-control-lg" 
 									placeholder="Password" 
 									name="password"
-									value={this.state.email}
+									value={this.state.password}
 									onChange={this.onChange} 
 								/>
 							</div>
