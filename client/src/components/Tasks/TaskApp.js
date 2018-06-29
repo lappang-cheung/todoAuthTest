@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+import TaskMain from './TaskMain'
+import Counter from './Counter'
+import TaskList from './TaskList'
+
 class TaskApp extends Component {
 
 	state = {
 		item: '',
+		itemTitle: '',
 		itemList: []
 	}
 
@@ -23,8 +28,14 @@ class TaskApp extends Component {
 
 	onChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
+            item: e.target.value
         })
+	}
+
+	onChangeTitle = (e) => {
+		this.setState({
+			itemTitle: e.target.value
+		})
 	}
 	
 	/*
@@ -50,8 +61,9 @@ class TaskApp extends Component {
 	*/
 	onAddInput = () => {
 		// Create the task item with axios route
-		axios.post('/tasks/', {
-			text: this.state.item
+		axios.post('/tasks', {
+			title: this.state.itemTitle,
+			description: this.state.item
 		})
 		.then(
 			res => console.log(res)
@@ -61,7 +73,8 @@ class TaskApp extends Component {
 		this.refresh();
 		// Clear the input
 		this.setState({
-			item: ''
+			item: '',
+			itemTitle: ''
 		});
 	}
 
@@ -69,9 +82,24 @@ class TaskApp extends Component {
 
 	render() {
 		return (
-			<div>
-				I am here for task
-			</div>
+			<React.Fragment>
+				<TaskMain
+					item={this.state.item}
+					itemTitle={this.state.itemTitle}
+					onChange={this.onChange}
+					onChangeTitle={this.onChangeTitle}
+					onAddInput={this.onAddInput}
+				/>
+
+				<Counter
+					itemList={this.state.itemList}
+				/>
+
+				<TaskList
+					itemList={this.state.itemList}
+					onDeleteInput={this.onDeleteInput}
+				/>
+			</React.Fragment>
 		)
 	}
 }
