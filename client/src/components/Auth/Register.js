@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import classnames from 'classnames'
+import { withRouter } from 'react-router-dom'
 
 class Register extends Component {
 
@@ -28,7 +29,7 @@ class Register extends Component {
         }
 
         axios.post('/users/signup', newUser)
-            .then(res => console.log(res.data))
+            .then(res => this.props.history.push('/login'))
             .catch(err => this.setState({
                 errors: err.response.data
             }))
@@ -131,4 +132,4 @@ class Register extends Component {
     }
 }
 
-export default Register
+export default (withRouter(Register))
